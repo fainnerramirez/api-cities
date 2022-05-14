@@ -11,10 +11,17 @@ export const Card = ({ elem }) => {
         />
         <div className="card-body">
           <h5 className="card-title">{elem.name.common}</h5>
-          <p className="card-text">
-            This is a longer card with supporting text below as a natural
-            lead-in to additional content. This content is a little bit longer.
-          </p>
+          <div>
+            <a
+              href={elem.maps.googleMaps}
+              target="_blank"
+              className="btn btn-primary m-2"
+              rel="noreferrer"
+            >
+              Ver mapa
+            </a>
+            <button className="btn btn-warning m-2">Ver Detalles</button>
+          </div>
         </div>
       </div>
     </div>

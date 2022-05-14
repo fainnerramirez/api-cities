@@ -27,7 +27,10 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App container">
+      <div>
+        <h1 className="p-5">Consumo de Api Paises</h1>
+      </div>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {countries.map((elem, index) => {
           return <Card key={index} elem={elem} />;
