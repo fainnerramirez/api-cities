@@ -1,29 +1,38 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import { Card } from "./components/Card";
 
 var config = {
   method: "get",
-  url: "https://api.countrystatecity.in/v1/countries",
-  headers: {
-    "X-CSCAPI-KEY": "API_KEY",
-  },
+  url: "https://restcountries.com/v3.1/all",
 };
 
 const App = () => {
+  const [countries, setCountries] = useState([]);
+
   useEffect(() => {
-    axios(config)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    const getAllCountries = async () => {
+      const data = await axios(config)
+        .then((res) => {
+          console.log(res.data);
+          setCountries(res.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+
+    getAllCountries();
   }, []);
 
   return (
     <div className="App">
-      <h1>Hello wordl!</h1>
+      <div className="row row-cols-1 row-cols-md-3 g-4">
+        {countries.map((elem, index) => {
+          return <Card key={index} elem={elem} />;
+        })}
+      </div>
     </div>
   );
 };
